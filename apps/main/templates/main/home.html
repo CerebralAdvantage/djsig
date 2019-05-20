@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Home</title>
+	</head>
+	<body>
+		<h1>Welcome Home, {{ user.first }}!</h1>
+		<h3>User ID: {{ request.session.user_id }}</h3>
+ 
+		<table border=1>
+			<tr>
+				<th>Name</th>
+				<th>Send Message?</th>
+			</tr>
+			{% for u in users %}
+			{% if user.id != u.id %}
+			<tr>
+				<td>{{ u.first }} {{ u.last }}</td>
+				<td><a href="/message/{{ u.id }}"><button>Send {{ u.first }} a msg</button></a></td>
+			</tr>
+			{% endif %}
+			{% endfor %}
+	
+		</table>
+
+		<hr>
+		{% if your_messages|length == 0 %}
+		<p>You have no new messages.</p>
+		{% else %}
+		<p>You have {{ your_messages|length }} new message(s).</p>
+		<a href="/view_messages"><button>View Messages</button></a>
+		{% endif %}
+
+		<br><br>
+		{% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		<br><br>
+
+		<a href="/logout">Log out</a>
+	</body>
+</html>

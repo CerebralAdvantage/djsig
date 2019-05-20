@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Dojo Notes</title>
+	<style>
+		.frmLeft {
+			display: inline-block;
+			width: 180px;
+			padding-right: 8px;
+			text-align: right;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Dojo Notes</h1>
+	<br>
+	<h3>Register:</h3>
+	<form action="register" method="post">
+			{% csrf_token %}
+			<div class="frmLeft">      First Name: </div><input type="text" name="first"><br>
+			<div class="frmLeft">       Last Name: </div><input type="text" name="last"><br>
+			<div class="frmLeft">        Username: </div><input type="text" name="username"><br>
+			<div class="frmLeft">           Email: </div><input type="text" name="email"><br>
+			<div class="frmLeft">   Date of Birth: </div><input type="date" name="dob"><br>
+			<div class="frmLeft">        Password: </div><input type="password" name="password"><br>
+			<div class="frmLeft">Confirm Password: </div><input type="password" name="confirm"><br>
+			<div class="frmLeft">                  </div><input type="submit" value="Register"><br>
+	</form>
+	<br><hr>
+	<h3>Login:</h3>
+	<form action="login" method="post">
+			{% csrf_token %}
+			<div class="frmLeft">           Email: </div><input type="text" name="email"><br>
+			<div class="frmLeft">        Password: </div><input type="password" name="password"><br>
+			<div class="frmLeft">                  </div><input type="submit" value="Login"><br>
+	</form>
+
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Messages!</title>
+	</head>
+	<body>
+		<h2>Your new messages</h2>
+		<h3>(returning in <span id="timesup">5</span>)</h3>
+		<hr>
+		{% for message in your_messages %}
+		<p><strong>{{ message.sent_by.username }} says:</strong> ({{message.created_at}})</p>
+		<p><pre>{{ message.content }}</pre></p>
+		<hr>
+		{% endfor %}
+
+		<script type="text/javascript">
+			var time = 5;
+			document.getElementById("timesup").innerHTML = ""+time;
+			setInterval(countdown, 1000);
+
+			function countdown() {
+				time--;
+				document.getElementById("timesup").innerHTML = ""+time;
+				if(time < 1) {
+					//window.location = "/home";
+					window.location = "/done_reading_messages";
+				}
+			}
+		</script>
+	</body>
+</html>
